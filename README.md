@@ -1,2 +1,2 @@
 # bit-tracker
-Tiny Tool for collecting Bittorent seeders.
+Tiny Tool to collect Bittorent seeders.
