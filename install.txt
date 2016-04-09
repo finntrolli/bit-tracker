@@ -1,0 +1,42 @@
+sudo apt-get -y install python-pip
+sudo apt-get -y install python-libtorrent
+sudo apt-get -y install mariadb-server
+sudo apt-get -y install mariadb-client
+udo apt-get -y install python-mysqldb
+sudo apt-get -y install python3-geoip
+sudo apt-get install python-geoip
+
+#Database configuration:
+sudo mysql_secure_installation
+
+create database testdb;
+CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'test623';
+ GRANT ALL ON testdb.* TO 'testuser'@'localhost';
+
+mysql testdb < db.sql
+
+
+How to monitor
+
+tail -f bt.log 
+
+How to start:
+
+nohup ./bt.py >bt.log 2>bt.err &
+
+Stop:
+
+ps axu | grep "bt.py" and kill -9 PID
+
+How to monitor
+
+tail -f bt.log 
+
+
+How to generate report to excel:
+
+(SELECT 'seeder_ip','seeder_hostname','torrent','country_code','hash') UNION ( SELECT seeder_ip,seeder_hostname,torrent,country_code,hash FROM seeder INTO OUTFILE '/tmp/seeders.csv'FIELDS ENCLOSED BY '"' TERMINATED BY ';' ESCAPED BY '"' LINES TERMINATED BY '\r\n');
+
+
+
+
